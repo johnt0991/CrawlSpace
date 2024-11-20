@@ -1,3 +1,4 @@
+import threading
 import time
 import json
 import tkinter as tk
@@ -68,6 +69,13 @@ def search_words():
         messagebox.showerror("Error", "Please enter or load search words.")
         return
 
+    # Disable buttons during search
+    search_button.config(state=tk.DISABLED)
+    load_words_button.config(state=tk.DISABLED)
+    search_words_label.config(state=tk.DISABLED)
+    folder_button.config(state=tk.DISABLED)
+    search_words_entry.config(state=tk.DISABLED)
+
     # Clear previous results
     results_text.config(state=tk.NORMAL)
     results_text.delete(1.0, tk.END)
@@ -76,92 +84,134 @@ def search_words():
     progress_label.config(text="Files Scanned: 0/0")
 
     results = []
-    try:
-        # Start the timer
-        start_time = time.time()
 
-        def extract_sentences(value, word_groups):
-            """Extract sentences containing any of the search words or word groups."""
-            sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', value)
-            return [
-                sentence
-                for sentence in sentences
-                if any(all(word.lower() in sentence.lower() for word in group) for group in word_groups)
-            ]
+    def perform_search():
+        """Run the search in a separate thread to avoid blocking the UI."""
+        try:
+            # Start the timer
+            start_time = time.time()
 
-        def find_display_name(data):
-            """Find the display name in the JSON data."""
-            if isinstance(data, dict) and "user_profile" in data:
-                return data["user_profile"].get("display_name", "N/A")
-            return "N/A"
+            def extract_sentences(value, word_groups):
+                """Extract sentences containing any of the search words or word groups."""
+                sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', value)
+                return [
+                    sentence
+                    for sentence in sentences
+                    if any(all(word.lower() in sentence.lower() for word in group) for group in word_groups)
+                ]
 
-        def scan_dict(d, file_path, word_groups):
-            """Scan only the 'text' field in a dictionary."""
-            display_name = find_display_name(d)
-            if "text" in d and isinstance(d["text"], str):
-                sentences = extract_sentences(d["text"], word_groups)
-                for sentence in sentences:
-                    highlighted_sentence = sentence
-                    for word in sum(word_groups, []):  # Flatten word_groups to highlight individual words
-                        highlighted_sentence = re.sub(rf"(\b{re.escape(word)}\b)", r"*\1*", highlighted_sentence, flags=re.IGNORECASE)
-                    results.append((display_name, highlighted_sentence, file_path))
+            def find_real_name(data):
+                """Find the real name in the JSON data, including for deleted messages."""
+                if isinstance(data, dict):
+                    # Check for regular message
+                    if "user_profile" in data:
+                        return data["user_profile"].get("real_name", "N/A")
+                    
+                    # Check for deleted message (real name is under 'original.user_profile')
+                    elif "subtype" in data and data["subtype"] == "message_deleted" and "original" in data:
+                        return data["original"].get("user_profile", {}).get("real_name", "N/A")
+                
+                return "N/A"
 
-        # Process search words into groups (single words or multi-word phrases on the same line)
-        word_groups = [line.strip().split() for line in words if line.strip()]
+            def scan_dict(d, file_path, word_groups):
+                """Scan dictionary for text and deleted messages."""
+                real_name = find_real_name(d)
+            
+                # Handle regular messages
+                if "text" in d and isinstance(d["text"], str):
+                    sentences = extract_sentences(d["text"], word_groups)
+                    for sentence in sentences:
+                        highlighted_sentence = sentence
+                        for word in sum(word_groups, []):  # Flatten word_groups to highlight individual words
+                            highlighted_sentence = re.sub(
+                                rf"(\b{re.escape(word)}\b)", r"*\1*", highlighted_sentence, flags=re.IGNORECASE
+                            )
+                        results.append((real_name, highlighted_sentence, file_path))
+            
+                # Handle deleted messages
+                if d.get("subtype") == "message_deleted" and "original" in d and isinstance(d["original"], dict):
+                    original_text = d["original"].get("text", "")
+                    if original_text:
+                        sentences = extract_sentences(original_text, word_groups)
+                        for sentence in sentences:
+                            highlighted_sentence = sentence
+                            for word in sum(word_groups, []):  # Flatten word_groups to highlight individual words
+                                highlighted_sentence = re.sub(
+                                    rf"(\b{re.escape(word)}\b)", r"*\1*", highlighted_sentence, flags=re.IGNORECASE
+                                )
+                            results.append(
+                                (f"{real_name} (Deleted Message)", highlighted_sentence, file_path)
+                            )
 
-        # Count total files for progress tracking
-        total_files = sum(len(files) for _, _, files in os.walk(folder_data))
-        current_file = 0
+            # Process search words into groups (single words or multi-word phrases on the same line)
+            word_groups = [line.strip().split() for line in words if line.strip()]
 
-        # Loop through all JSON files in the folder
-        for dirpath, _, files in os.walk(folder_data):
-            for file in files:
-                if file.endswith(".json"):
-                    file_path = os.path.join(dirpath, file)
-                    current_file += 1
-                    progress_bar["value"] = (current_file / total_files) * 100
-                    progress_label.config(
-                        text=f"Files Scanned: {current_file}/{total_files}"
-                    )
-                    root.update_idletasks()
+            # Count total files for progress tracking
+            total_files = sum(len(files) for _, _, files in os.walk(folder_data))
+            current_file = 0
 
-                    try:
-                        with open(file_path, "r", encoding="utf-8") as json_file:
-                            data = json.load(json_file)
-                            if isinstance(data, dict):
-                                scan_dict(data, file_path, word_groups)
-                            elif isinstance(data, list):
-                                for item in data:
-                                    if isinstance(item, dict):
-                                        scan_dict(item, file_path, word_groups)
-                    except Exception as e:
-                        messagebox.showerror("Error", f"Error reading file {file_path}: {e}")
+            # Loop through all JSON files in the folder
+            for dirpath, _, files in os.walk(folder_data):
+                for file in files:
+                    if file.endswith(".json"):
+                        file_path = os.path.join(dirpath, file)
+                        current_file += 1
+                        progress_bar["value"] = (current_file / total_files) * 100
+                        progress_label.config(
+                            text=f"Files Scanned: {current_file}/{total_files}"
+                        )
+                        root.update_idletasks()
 
-        # Stop the timer
-        end_time = time.time()
-        elapsed_time = end_time - start_time
+                        try:
+                            with open(file_path, "r", encoding="utf-8") as json_file:
+                                data = json.load(json_file)
+                                if isinstance(data, dict):
+                                    scan_dict(data, file_path, word_groups)
+                                elif isinstance(data, list):
+                                    for item in data:
+                                        if isinstance(item, dict):
+                                            scan_dict(item, file_path, word_groups)
+                        except Exception as e:
+                            messagebox.showerror("Error", f"Error reading file {file_path}: {e}")
 
-        # Display results
-        if results:
-            for display_name, highlighted_sentence, file_path in results:
-                result_text = f"Display Name: {display_name}\nMatch: {highlighted_sentence}\nFile Path: {file_path}\n{'-'*50}\n"
-                results_text.insert(tk.END, result_text)
+            # Stop the timer
+            end_time = time.time()
+            elapsed_time = end_time - start_time
 
-            results_label.config(
-                text=f"Total Results Found: {len(results)} in {elapsed_time:.2f} seconds"
-            )
-        else:
-            results_label.config(
-                text=f"No matches found for the search words in {elapsed_time:.2f} seconds"
-            )
-    except Exception as e:
-        messagebox.showerror("Error", f"Error during search: {e}")
-    finally:
-        results_text.config(state=tk.DISABLED)
+            # Display results
+            if results:
+                for real_name, highlighted_sentence, file_path in results:
+                    result_text = f"Real Name: {real_name}\nMatch: {highlighted_sentence}\nFile Path: {file_path}\n{'-'*50}\n"
+                    results_text.insert(tk.END, result_text)
+
+                results_label.config(
+                    text=f"Total Results Found: {len(results)} in {elapsed_time:.2f} seconds"
+                )
+            else:
+                results_label.config(
+                    text=f"No matches found for the search words in {elapsed_time:.2f} seconds"
+                )
+        except Exception as e:
+            messagebox.showerror("Error", f"Error during search: {e}")
+        finally:
+            # Re-enable buttons after the search is complete
+            search_button.config(state=tk.NORMAL)
+            load_words_button.config(state=tk.NORMAL)
+            search_words_label.config(state=tk.NORMAL)
+            folder_button.config(state=tk.NORMAL)
+            search_words_entry.config(state=tk.NORMAL)
+
+            results_text.config(state=tk.DISABLED)
+
+    # Run the search in a separate thread
+    threading.Thread(target=perform_search, daemon=True).start()
+
+
+
 
 # Main Application
 root = tk.Tk()
-root.title("CrawlSpace - Slack Audit Engine V0.1")
+root.title("CrawlSpace - Slack Audit Engine V0.2")
 root.geometry("900x750")
 root.iconbitmap("crawl.ico")
 
