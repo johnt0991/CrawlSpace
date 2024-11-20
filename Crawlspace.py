@@ -92,12 +92,15 @@ def search_words():
             start_time = time.time()
 
             def extract_sentences(value, word_groups):
-                """Extract sentences containing any of the search words or word groups."""
+                """Extract sentences containing exact words or all words in a phrase (in any order)."""
                 sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', value)
                 return [
                     sentence
                     for sentence in sentences
-                    if any(all(word.lower() in sentence.lower() for word in group) for group in word_groups)
+                    if any(
+                        all(re.search(r'\b{}\b'.format(re.escape(word)), sentence, re.IGNORECASE) for word in group)
+                        for group in word_groups
+                    )
                 ]
 
             def find_real_name(data):
@@ -211,7 +214,7 @@ def search_words():
 
 # Main Application
 root = tk.Tk()
-root.title("CrawlSpace - Slack Audit Engine V0.2")
+root.title("CrawlSpace - Slack Audit Engine V0.2.2")
 root.geometry("900x750")
 root.iconbitmap("crawl.ico")
 
