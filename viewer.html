@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slack Chat Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        .file-upload {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="file"] {
+            padding: 10px;
+            font-size: 16px;
+        }
+        .chat-container {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .message {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            width: 80%; /* Constrain message width */
+            max-width: 600px; /* Optional: set a maximum width */
+        }
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .bubble {
+            position: relative;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 14px;
+            line-height: 1.5;
+            word-wrap: break-word;
+            color: #000; /* Ensure text is readable */
+            width: 100%;
+        }
+        .user-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .timestamp {
+            font-size: 12px;
+            color: #555;
+            text-align: right;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Slack Chat Viewer</h1>
+        <div class="file-upload">
+            <input type="file" id="fileInput" accept=".json">
+        </div>
+        <div id="chatOutput" class="chat-container"></div>
+    </div>
+    <script>
+        document.getElementById('fileInput').addEventListener('change', handleFileUpload);
+    
+        const userColors = {}; // Store random colors for each user
+    
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+    
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const content = e.target.result;
+                try {
+                    const jsonData = JSON.parse(content);
+                    displayChat(jsonData);
+                } catch (error) {
+                    alert('Invalid JSON file format');
+                    console.error(error);
+                }
+            };
+            reader.readAsText(file);
+        }
+    
+        function displayChat(data) {
+            const chatOutput = document.getElementById('chatOutput');
+            chatOutput.innerHTML = '';
+    
+            for (const message of data) {
+                // Handle deleted message
+                if (message.subtype === "message_deleted") {
+                    displayDeletedMessage(message);
+                } else {
+                    displayRegularMessage(message);
+                }
+            }
+        }
+    
+        function displayRegularMessage(message) {
+            const userProfile = message.user_profile || {};
+            const userId = message.user || "unknown_user";
+            const userName = userProfile.display_name || userProfile.real_name || "Unknown User";
+            const avatarUrl = userProfile.image_72 || "https://via.placeholder.com/40";
+            const timestamp = new Date(parseFloat(message.ts) * 1000).toLocaleString();
+    
+            // Assign a random HSL color to the user if not already assigned
+            if (!userColors[userId]) {
+                userColors[userId] = getRandomHSLColor();
+            }
+            const userColor = userColors[userId];
+    
+            // Extract message text
+            const text = extractMessageText(message);
+    
+            // Create message element
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message';
+    
+            const avatarImg = document.createElement('img');
+            avatarImg.className = 'avatar';
+            avatarImg.src = avatarUrl;
+    
+            const bubbleDiv = document.createElement('div');
+            bubbleDiv.className = 'bubble';
+            bubbleDiv.style.backgroundColor = userColor;
+    
+            const nameDiv = document.createElement('div');
+            nameDiv.className = 'user-name';
+            nameDiv.textContent = userName;
+    
+            const textDiv = document.createElement('div');
+            textDiv.innerHTML = text; // Use innerHTML to render links
+    
+            const timestampDiv = document.createElement('div');
+            timestampDiv.className = 'timestamp';
+            timestampDiv.textContent = timestamp;
+    
+            bubbleDiv.appendChild(nameDiv);
+            bubbleDiv.appendChild(textDiv);
+            bubbleDiv.appendChild(timestampDiv);
+            messageDiv.appendChild(avatarImg);
+            messageDiv.appendChild(bubbleDiv);
+    
+            chatOutput.appendChild(messageDiv);
+        }
+    
+        function displayDeletedMessage(message) {
+            const userProfile = message.original.user_profile || {};
+            const userId = message.original.user || "unknown_user";
+            const userName = userProfile.display_name || userProfile.real_name || "Unknown User";
+            const avatarUrl = userProfile.image_72 || "https://via.placeholder.com/40";
+            const timestamp = new Date(parseFloat(message.ts) * 1000).toLocaleString();
+    
+            // Assign a random HSL color to the user if not already assigned
+            if (!userColors[userId]) {
+                userColors[userId] = getRandomHSLColor();
+            }
+            const userColor = userColors[userId];
+    
+            // Extract message text from the original (deleted) message
+            const text = extractMessageText(message.original);
+    
+            // Create message element for deleted message
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message deleted';
+    
+            const avatarImg = document.createElement('img');
+            avatarImg.className = 'avatar';
+            avatarImg.src = avatarUrl;
+    
+            const bubbleDiv = document.createElement('div');
+            bubbleDiv.className = 'bubble';
+            bubbleDiv.style.backgroundColor = userColor;
+            bubbleDiv.style.opacity = 0.6; // Make deleted messages slightly transparent
+    
+            const nameDiv = document.createElement('div');
+            nameDiv.className = 'user-name';
+            nameDiv.textContent = userName + " (Deleted)";
+    
+            const textDiv = document.createElement('div');
+            textDiv.innerHTML = text; // Use innerHTML to render links
+    
+            const timestampDiv = document.createElement('div');
+            timestampDiv.className = 'timestamp';
+            timestampDiv.textContent = timestamp;
+    
+            bubbleDiv.appendChild(nameDiv);
+            bubbleDiv.appendChild(textDiv);
+            bubbleDiv.appendChild(timestampDiv);
+            messageDiv.appendChild(avatarImg);
+            messageDiv.appendChild(bubbleDiv);
+    
+            chatOutput.appendChild(messageDiv);
+        }
+    
+        function extractMessageText(message) {
+            let finalText = '';
+    
+            if (message.blocks) {
+                for (const block of message.blocks) {
+                    if (block.type === "rich_text") {
+                        for (const element of block.elements) {
+                            if (element.type === "rich_text_section") {
+                                finalText += element.elements
+                                    .map(el => {
+                                        if (el.type === "text") {
+                                            return el.text;
+                                        } else if (el.type === "link") {
+                                            return `<a href="${el.url}" target="_blank">${el.text || el.url}</a>`;
+                                        }
+                                        return '';
+                                    })
+                                    .join('');
+                            }
+                        }
+                    }
+                }
+            } else if (message.text) {
+                finalText = replaceSlackPlaceholders(message.text);
+            }
+    
+            return finalText;
+        }
+    
+        function replaceSlackPlaceholders(text) {
+            // Replace links like <mailto:email@example.com|email@example.com> with proper anchor tags
+            return text.replace(/<([^|>]+)\|([^>]+)>/g, (_, url, label) => {
+                return `<a href="${url}" target="_blank">${label}</a>`;
+            });
+        }
+    
+        function getRandomHSLColor() {
+            const hue = Math.floor(Math.random() * 360); // Random hue
+            const saturation = 50; // Fixed saturation at 50%
+            const lightness = 70; // Fixed lightness at 70%
+            return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+        }
+    </script>
+    
+    
+</body>
+</html>
