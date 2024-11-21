@@ -1,3 +1,4 @@
+import webbrowser
 import threading
 import time
 import json
@@ -209,6 +210,45 @@ def search_words():
     # Run the search in a separate thread
     threading.Thread(target=perform_search, daemon=True).start()
 
+def copy_to_clipboard(event):
+    """Copy the clicked file path to the clipboard."""
+    try:
+        widget = event.widget
+        index = widget.index(f"@{event.x},{event.y}")
+        line = widget.get(index + " linestart", index + " lineend")
+        match = re.search(r"File Path: (.+)", line)
+        if match:
+            file_path = match.group(1)
+            root.clipboard_clear()
+            root.clipboard_append(file_path)
+            root.update()
+            messagebox.showinfo("Copied", f"File path copied to clipboard:\n{file_path}")
+    except Exception as e:
+        messagebox.showerror("Error", f"Failed to copy file path: {e}")
+
+def on_hover(event):
+    """Change the mouse cursor to a hand when hovering over file paths."""
+    widget = event.widget
+    try:
+        index = widget.index(f"@{event.x},{event.y}")
+        line = widget.get(index + " linestart", index + " lineend")
+        
+        # Check if the line contains 'File Path:'
+        if "File Path:" in line:
+            widget.config(cursor="hand2")  # Set cursor to hand pointer
+        else:
+            widget.config(cursor="")  # Reset cursor if not on file path
+    except Exception as e:
+        widget.config(cursor="")  # Reset cursor if there's an error
+
+def open_html_file():
+    """Open main.html located in the same directory as this script."""
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    html_path = os.path.join(script_dir, "viewer.html")
+    if os.path.exists(html_path):
+        webbrowser.open(f"file://{html_path}")
+    else:
+        messagebox.showerror("Error", f"main.html not found in:\n{script_dir}")
 
 
 
@@ -282,5 +322,15 @@ results_text.config(state=tk.DISABLED)
 # Add a progress label to show file count (moved to row 8)
 progress_label = ttk.Label(frame, text="Files Scanned: 0/0", font=("Arial", 10))
 progress_label.grid(row=8, column=0, pady=5)
+
+# Add a clickable label in the top-right corner to open the HTML file
+html_link = ttk.Label(frame, text="Open HTML File", foreground="blue", cursor="hand2", font=("Arial", 10, "underline"))
+html_link.grid(row=0, column=1, pady=5, padx=5, sticky=tk.E)
+html_link.bind("<Button-1>", lambda e: open_html_file())
+
+# Bind click events to the results text widget
+results_text.bind("<Button-1>", copy_to_clipboard)
+results_text.bind("<Motion>", on_hover)  # When mouse moves over the widget
+
 
 root.mainloop()
