@@ -283,7 +283,7 @@ root = tk.Tk()
 icon_path = resource_path("crawl.ico")
 icon_path = ensure_icon_exists(icon_path)
 root.iconbitmap(icon_path)  # Set the icon
-root.title("CrawlSpace - Slack Audit Engine V1.0.0")
+root.title("CrawlSpace - Slack Audit Engine V1.0.1")
 root.geometry("900x700")
 root.iconbitmap("crawl.ico")
 
@@ -318,7 +318,7 @@ folder_label = ttk.Label(ui_frame, text="Folder: None selected", font=("Arial", 
 folder_label.grid(row=0, column=1, pady=5, sticky=tk.W, columnspan=2)
 
 # Add a clickable label in the top-right corner to open the HTML file
-html_link = ttk.Button(ui_frame, text="Open HTML File")
+html_link = ttk.Button(ui_frame, text="Open Conversation Viewer")
 html_link.grid(row=0, column=2, pady=5, padx=5, sticky=tk.E)
 html_link.bind("<Button-1>", lambda e: open_html_file())
 
