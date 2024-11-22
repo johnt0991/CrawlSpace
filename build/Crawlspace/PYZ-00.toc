@@ -1,334 +1,465 @@
 ('D:\\CrawlSpace\\build\\Crawlspace\\PYZ-00.pyz',
  [('_compat_pickle',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\_compat_pickle.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\_compat_pickle.py',
    'PYMODULE'),
   ('_compression',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\_compression.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\_compression.py',
    'PYMODULE'),
   ('_py_abc',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\_py_abc.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\_py_abc.py',
+   'PYMODULE'),
+  ('_pydatetime',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\_pydatetime.py',
    'PYMODULE'),
   ('_pydecimal',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\_pydecimal.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\_pydecimal.py',
    'PYMODULE'),
   ('_strptime',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\_strptime.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\_strptime.py',
    'PYMODULE'),
   ('_threading_local',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\_threading_local.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\_threading_local.py',
    'PYMODULE'),
   ('argparse',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\argparse.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\argparse.py',
    'PYMODULE'),
   ('ast',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\ast.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\ast.py',
    'PYMODULE'),
   ('base64',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\base64.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\base64.py',
    'PYMODULE'),
   ('bisect',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\bisect.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\bisect.py',
    'PYMODULE'),
   ('bz2',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\bz2.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\bz2.py',
    'PYMODULE'),
   ('calendar',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\calendar.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\calendar.py',
    'PYMODULE'),
   ('contextlib',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\contextlib.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\contextlib.py',
    'PYMODULE'),
   ('contextvars',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\contextvars.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\contextvars.py',
    'PYMODULE'),
   ('copy',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\copy.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\copy.py',
    'PYMODULE'),
   ('csv',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\csv.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\csv.py',
    'PYMODULE'),
   ('dataclasses',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\dataclasses.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\dataclasses.py',
    'PYMODULE'),
   ('datetime',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\datetime.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\datetime.py',
    'PYMODULE'),
   ('decimal',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\decimal.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\decimal.py',
    'PYMODULE'),
   ('dis',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\dis.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\dis.py',
    'PYMODULE'),
   ('email',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\email\\__init__.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\email\\__init__.py',
    'PYMODULE'),
   ('email._encoded_words',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\email\\_encoded_words.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\email\\_encoded_words.py',
    'PYMODULE'),
   ('email._header_value_parser',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\email\\_header_value_parser.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\email\\_header_value_parser.py',
    'PYMODULE'),
   ('email._parseaddr',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\email\\_parseaddr.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\email\\_parseaddr.py',
    'PYMODULE'),
   ('email._policybase',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\email\\_policybase.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\email\\_policybase.py',
    'PYMODULE'),
   ('email.base64mime',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\email\\base64mime.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\email\\base64mime.py',
    'PYMODULE'),
   ('email.charset',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\email\\charset.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\email\\charset.py',
    'PYMODULE'),
   ('email.contentmanager',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\email\\contentmanager.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\email\\contentmanager.py',
    'PYMODULE'),
   ('email.encoders',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\email\\encoders.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\email\\encoders.py',
    'PYMODULE'),
   ('email.errors',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\email\\errors.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\email\\errors.py',
    'PYMODULE'),
   ('email.feedparser',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\email\\feedparser.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\email\\feedparser.py',
    'PYMODULE'),
   ('email.generator',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\email\\generator.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\email\\generator.py',
    'PYMODULE'),
   ('email.header',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\email\\header.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\email\\header.py',
    'PYMODULE'),
   ('email.headerregistry',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\email\\headerregistry.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\email\\headerregistry.py',
    'PYMODULE'),
   ('email.iterators',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\email\\iterators.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\email\\iterators.py',
    'PYMODULE'),
   ('email.message',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\email\\message.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\email\\message.py',
    'PYMODULE'),
   ('email.parser',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\email\\parser.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\email\\parser.py',
    'PYMODULE'),
   ('email.policy',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\email\\policy.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\email\\policy.py',
    'PYMODULE'),
   ('email.quoprimime',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\email\\quoprimime.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\email\\quoprimime.py',
    'PYMODULE'),
   ('email.utils',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\email\\utils.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\email\\utils.py',
    'PYMODULE'),
   ('fnmatch',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\fnmatch.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\fnmatch.py',
    'PYMODULE'),
   ('fractions',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\fractions.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\fractions.py',
    'PYMODULE'),
   ('getopt',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\getopt.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\getopt.py',
    'PYMODULE'),
   ('gettext',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\gettext.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\gettext.py',
    'PYMODULE'),
   ('gzip',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\gzip.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\gzip.py',
    'PYMODULE'),
   ('hashlib',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\hashlib.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\hashlib.py',
    'PYMODULE'),
   ('importlib',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\importlib\\__init__.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\__init__.py',
    'PYMODULE'),
   ('importlib._abc',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\importlib\\_abc.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\_abc.py',
    'PYMODULE'),
   ('importlib._bootstrap',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\importlib\\_bootstrap.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\_bootstrap.py',
    'PYMODULE'),
   ('importlib._bootstrap_external',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\importlib\\_bootstrap_external.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\_bootstrap_external.py',
    'PYMODULE'),
   ('importlib.abc',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\importlib\\abc.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\abc.py',
    'PYMODULE'),
   ('importlib.machinery',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\importlib\\machinery.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\machinery.py',
    'PYMODULE'),
   ('importlib.metadata',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\importlib\\metadata\\__init__.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\metadata\\__init__.py',
    'PYMODULE'),
   ('importlib.metadata._adapters',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\importlib\\metadata\\_adapters.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\metadata\\_adapters.py',
    'PYMODULE'),
   ('importlib.metadata._collections',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\importlib\\metadata\\_collections.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\metadata\\_collections.py',
    'PYMODULE'),
   ('importlib.metadata._functools',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\importlib\\metadata\\_functools.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\metadata\\_functools.py',
    'PYMODULE'),
   ('importlib.metadata._itertools',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\importlib\\metadata\\_itertools.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\metadata\\_itertools.py',
    'PYMODULE'),
   ('importlib.metadata._meta',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\importlib\\metadata\\_meta.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\metadata\\_meta.py',
    'PYMODULE'),
   ('importlib.metadata._text',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\importlib\\metadata\\_text.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\metadata\\_text.py',
    'PYMODULE'),
   ('importlib.readers',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\importlib\\readers.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\readers.py',
    'PYMODULE'),
   ('importlib.resources',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\importlib\\resources\\__init__.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\resources\\__init__.py',
    'PYMODULE'),
   ('importlib.resources._adapters',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\importlib\\resources\\_adapters.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\resources\\_adapters.py',
    'PYMODULE'),
   ('importlib.resources._common',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\importlib\\resources\\_common.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\resources\\_common.py',
    'PYMODULE'),
   ('importlib.resources._itertools',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\importlib\\resources\\_itertools.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\resources\\_itertools.py',
    'PYMODULE'),
   ('importlib.resources._legacy',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\importlib\\resources\\_legacy.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\resources\\_legacy.py',
    'PYMODULE'),
   ('importlib.resources.abc',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\importlib\\resources\\abc.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\resources\\abc.py',
    'PYMODULE'),
   ('importlib.resources.readers',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\importlib\\resources\\readers.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\resources\\readers.py',
    'PYMODULE'),
   ('importlib.util',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\importlib\\util.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\importlib\\util.py',
    'PYMODULE'),
   ('inspect',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\inspect.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\inspect.py',
    'PYMODULE'),
   ('ipaddress',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\ipaddress.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\ipaddress.py',
    'PYMODULE'),
   ('json',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\json\\__init__.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\json\\__init__.py',
    'PYMODULE'),
   ('json.decoder',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\json\\decoder.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\json\\decoder.py',
    'PYMODULE'),
   ('json.encoder',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\json\\encoder.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\json\\encoder.py',
    'PYMODULE'),
   ('json.scanner',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\json\\scanner.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\json\\scanner.py',
    'PYMODULE'),
   ('logging',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\logging\\__init__.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\logging\\__init__.py',
    'PYMODULE'),
   ('lzma',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\lzma.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\lzma.py',
    'PYMODULE'),
   ('numbers',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\numbers.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\numbers.py',
    'PYMODULE'),
   ('opcode',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\opcode.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\opcode.py',
    'PYMODULE'),
   ('pathlib',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\pathlib.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\pathlib.py',
    'PYMODULE'),
   ('pickle',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\pickle.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\pickle.py',
    'PYMODULE'),
   ('pprint',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\pprint.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\pprint.py',
    'PYMODULE'),
   ('py_compile',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\py_compile.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\py_compile.py',
    'PYMODULE'),
   ('quopri',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\quopri.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\quopri.py',
    'PYMODULE'),
   ('random',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\random.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\random.py',
    'PYMODULE'),
   ('selectors',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\selectors.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\selectors.py',
+   'PYMODULE'),
+  ('shlex',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\shlex.py',
    'PYMODULE'),
   ('shutil',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\shutil.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\shutil.py',
    'PYMODULE'),
   ('signal',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\signal.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\signal.py',
    'PYMODULE'),
   ('socket',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\socket.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\socket.py',
    'PYMODULE'),
   ('statistics',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\statistics.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\statistics.py',
    'PYMODULE'),
   ('string',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\string.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\string.py',
    'PYMODULE'),
   ('stringprep',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\stringprep.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\stringprep.py',
    'PYMODULE'),
   ('subprocess',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\subprocess.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\subprocess.py',
    'PYMODULE'),
   ('tarfile',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\tarfile.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\tarfile.py',
    'PYMODULE'),
   ('tempfile',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\tempfile.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\tempfile.py',
    'PYMODULE'),
   ('textwrap',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\textwrap.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\textwrap.py',
    'PYMODULE'),
   ('threading',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\threading.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\threading.py',
    'PYMODULE'),
   ('tkinter',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\tkinter\\__init__.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\tkinter\\__init__.py',
    'PYMODULE'),
   ('tkinter.commondialog',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\tkinter\\commondialog.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\tkinter\\commondialog.py',
    'PYMODULE'),
   ('tkinter.constants',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\tkinter\\constants.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\tkinter\\constants.py',
    'PYMODULE'),
   ('tkinter.dialog',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\tkinter\\dialog.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\tkinter\\dialog.py',
    'PYMODULE'),
   ('tkinter.filedialog',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\tkinter\\filedialog.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\tkinter\\filedialog.py',
    'PYMODULE'),
   ('tkinter.messagebox',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\tkinter\\messagebox.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\tkinter\\messagebox.py',
    'PYMODULE'),
   ('tkinter.simpledialog',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\tkinter\\simpledialog.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\tkinter\\simpledialog.py',
    'PYMODULE'),
   ('tkinter.ttk',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\tkinter\\ttk.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\tkinter\\ttk.py',
    'PYMODULE'),
   ('token',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\token.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\token.py',
    'PYMODULE'),
   ('tokenize',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\tokenize.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\tokenize.py',
    'PYMODULE'),
   ('tracemalloc',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\tracemalloc.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\tracemalloc.py',
    'PYMODULE'),
   ('typing',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\typing.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\typing.py',
    'PYMODULE'),
   ('urllib',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\urllib\\__init__.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\urllib\\__init__.py',
    'PYMODULE'),
   ('urllib.parse',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\urllib\\parse.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\urllib\\parse.py',
+   'PYMODULE'),
+  ('webbrowser',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\webbrowser.py',
    'PYMODULE'),
   ('zipfile',
-   'C:\\Users\\jtotaro\\AppData\\Local\\spyder-6\\envs\\spyder-runtime\\Lib\\zipfile.py',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\zipfile\\__init__.py',
+   'PYMODULE'),
+  ('zipfile._path',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\zipfile\\_path\\__init__.py',
+   'PYMODULE'),
+  ('zipfile._path.glob',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2032.0_x64__qbz5n2kfra8p0\\Lib\\zipfile\\_path\\glob.py',
    'PYMODULE')])

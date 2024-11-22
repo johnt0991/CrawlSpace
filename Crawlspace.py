@@ -1,3 +1,4 @@
+import webbrowser
 import threading
 import time
 import json
@@ -6,6 +7,8 @@ from tkinter import filedialog, messagebox
 from tkinter import ttk
 import re
 import os
+import sys
+import shutil
 
 def load_folder():
     """Load a folder containing JSON files."""
@@ -44,6 +47,13 @@ def show_search_criteria_info():
     info_window.title("Search Criteria Instructions")
     info_window.geometry("400x200")
     info_window.iconbitmap("crawl.ico")
+    
+    # Get the mouse position
+    mouse_x = root.winfo_pointerx()
+    mouse_y = root.winfo_pointery()
+    
+    # Position the popup window at the mouse location
+    info_window.geometry(f"+{mouse_x}+{mouse_y}")
     
     info_label = ttk.Label(info_window, text=(
         "Search Criteria Format:\n\n"
@@ -209,69 +219,155 @@ def search_words():
     # Run the search in a separate thread
     threading.Thread(target=perform_search, daemon=True).start()
 
+def copy_to_clipboard(event):
+    """Copy the clicked file path to the clipboard."""
+    try:
+        widget = event.widget
+        index = widget.index(f"@{event.x},{event.y}")
+        line = widget.get(index + " linestart", index + " lineend")
+        match = re.search(r"File Path: (.+)", line)
+        if match:
+            file_path = match.group(1)
+            root.clipboard_clear()
+            root.clipboard_append(file_path)
+            root.update()
+            messagebox.showinfo("Copied", f"File path copied to clipboard:\n{file_path}")
+    except Exception as e:
+        messagebox.showerror("Error", f"Failed to copy file path: {e}")
 
+def on_hover(event):
+    """Change the mouse cursor to a hand when hovering over file paths."""
+    widget = event.widget
+    try:
+        index = widget.index(f"@{event.x},{event.y}")
+        line = widget.get(index + " linestart", index + " lineend")
+        
+        # Check if the line contains 'File Path:'
+        if "File Path:" in line:
+            widget.config(cursor="hand2")  # Set cursor to hand pointer
+        else:
+            widget.config(cursor="")  # Reset cursor if not on file path
+    except Exception as e:
+        widget.config(cursor="")  # Reset cursor if there's an error
 
+def open_html_file():
+    """Open main.html located in the same directory as this script."""
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    html_path = os.path.join(script_dir, "viewer.html")
+    if os.path.exists(html_path):
+        webbrowser.open(f"file://{html_path}")
+    else:
+        messagebox.showerror("Error", f"main.html not found in:\n{script_dir}")
+
+def resource_path(relative_path):
+    """Get the correct path to bundled resources when running with PyInstaller."""
+    if hasattr(sys, "_MEIPASS"):
+        # Running in PyInstaller bundle
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
+def ensure_icon_exists(icon_path):
+    """Ensure the icon file exists in the right directory."""
+    if hasattr(sys, "_MEIPASS"):
+        # PyInstaller will bundle the icon in the temporary directory, ensure it's copied to the working directory
+        dest_path = os.path.join(os.getcwd(), "crawl.ico")
+        if not os.path.exists(dest_path):
+            shutil.copy(icon_path, dest_path)
+        return dest_path
+    return icon_path
 
 # Main Application
 root = tk.Tk()
-root.title("CrawlSpace - Slack Audit Engine V0.2.2")
-root.geometry("900x750")
+
+# Load the icon using the resource_path function
+icon_path = resource_path("crawl.ico")
+icon_path = ensure_icon_exists(icon_path)
+root.iconbitmap(icon_path)  # Set the icon
+root.title("CrawlSpace - Slack Audit Engine V1.0.0")
+root.geometry("900x700")
 root.iconbitmap("crawl.ico")
+
+
+# Lock the window size (disable resizing)
+root.resizable(False, False)
 
 # Global variables
 folder_data = None
 total_files = 0
 
 # Frame for organizing widgets
-frame = ttk.Frame(root, padding="10")
+frame = ttk.Frame(root, padding="10", relief="solid", borderwidth=2)
 frame.grid(row=0, column=0, sticky=(tk.N, tk.S, tk.E, tk.W))
-root.grid_rowconfigure(0, weight=1)
 root.grid_columnconfigure(0, weight=1)
-
-# Center alignment for the frame
-for i in range(11):  # Number of rows to match the widgets
-    frame.grid_rowconfigure(i, weight=1)
 frame.grid_columnconfigure(0, weight=1)
 
+
+# UI Frame
+ui_frame = ttk.Frame(frame, padding="10", relief="solid", borderwidth=2)
+ui_frame.grid(row=0, column=0, sticky=(tk.N, tk.S, tk.E, tk.W))
+ui_frame.columnconfigure(0, minsize=150)
+ui_frame.columnconfigure(1, minsize=400, weight=1)
+ui_frame.columnconfigure(2, minsize=150)
+
+# ROW 0
 # Load Folder Button and Labels
-folder_button = ttk.Button(frame, text="Select Folder", command=load_folder)
-folder_button.grid(row=0, column=0, pady=5, padx=5, sticky=tk.N)
+folder_button = ttk.Button(ui_frame, text="Select Folder", command=load_folder)
+folder_button.grid(row=0, column=0, pady=5, padx=5, sticky=(tk.N, tk.W))
 
-folder_label = ttk.Label(frame, text="Folder: None selected", font=("Arial", 10))
-folder_label.grid(row=1, column=0, pady=5)
+folder_label = ttk.Label(ui_frame, text="Folder: None selected", font=("Arial", 10), relief="solid", borderwidth=2, width=75)
+folder_label.grid(row=0, column=1, pady=5, sticky=tk.W, columnspan=2)
 
-file_count_label = ttk.Label(frame, text=f"Total JSON Files: {total_files}", font=("Arial", 10))
-file_count_label.grid(row=2, column=0, pady=5)
+# Add a clickable label in the top-right corner to open the HTML file
+html_link = ttk.Button(ui_frame, text="Open HTML File")
+html_link.grid(row=0, column=2, pady=5, padx=5, sticky=tk.E)
+html_link.bind("<Button-1>", lambda e: open_html_file())
+
+# ROW 1
 
 # Load Search Words Button
-load_words_button = ttk.Button(frame, text="Load Search Words", command=load_search_words)
-load_words_button.grid(row=3, column=0, pady=5)
+load_words_button = ttk.Button(ui_frame, text="Load Search Words", command=load_search_words)
+load_words_button.grid(row=1, column=0, pady=5, padx=5, sticky=(tk.N, tk.W))
 
-# Search Words Entry
-search_words_label = ttk.Label(frame, text="Search Words (Click Here for citeria):")
-search_words_label.grid(row=4, column=0, pady=5)
-search_words_label.bind("<Button-1>", lambda e: show_search_criteria_info())  # Open info window on click
-search_words_entry = tk.Text(frame, wrap=tk.WORD, height=10, width=50)
-search_words_entry.grid(row=5, column=0, pady=5)
+search_words_entry = tk.Text(ui_frame, wrap=tk.WORD, height=10, width=40, relief="solid", borderwidth=2)
+search_words_entry.grid(row=1, column=1, rowspan=3, sticky=tk.W, pady=5)
+
+# Row 2
 
 # Search Button
-search_button = ttk.Button(frame, text="Search", command=search_words)
-search_button.grid(row=6, column=0, pady=10)
+search_button = ttk.Button(ui_frame, text="Search", command=search_words)
+search_button.grid(row=4, column=0, pady=5, sticky=(tk.N, tk.W))
 
-# Progress Bar
-progress_bar = ttk.Progressbar(frame, orient="horizontal", length=400, mode="determinate")
-progress_bar.grid(row=7, column=0, pady=10)
+# Row 3
 
-# Results Count Label
-results_label = ttk.Label(frame, text="", font=("Arial", 10, "bold"), foreground="blue")
-results_label.grid(row=9, column=0, pady=5)
+# Row 4
 
+# Search Button
+search_button = ttk.Button(ui_frame, text="Search", command=search_words)
+search_button.grid(row=4, column=0, pady=5, sticky=(tk.N, tk.W))
+
+# Search Words Entry
+search_words_label = ttk.Label(ui_frame, text="(Click Here for citeria)")
+search_words_label.grid(row=4, column=1, pady=5, sticky=(tk.N,tk.W, tk.E))
+search_words_label.bind("<Button-1>", lambda e: show_search_criteria_info())  # Open info window on click
+
+
+
+
+# Results Frame
+results_frame = ttk.Frame(frame, padding="10", relief="solid", borderwidth=2)
+results_frame.grid(row=1, column=0, sticky=(tk.N, tk.S, tk.E, tk.W))
+results_frame.columnconfigure(0, minsize=150)
+results_frame.columnconfigure(1, minsize=400, weight=1)
+results_frame.columnconfigure(2, minsize=150)
+
+
+# Row 0
 # Results Text Widget with Scrollbar
-results_frame = ttk.Frame(frame)  # Frame to hold the text widget and scrollbar
-results_frame.grid(row=10, column=0, pady=5, sticky=(tk.W, tk.E))
+results_content = ttk.Frame(results_frame)  # Frame to hold the text widget and scrollbar
+results_content.grid(row=0, column=0, columnspan=4, pady=5, sticky=(tk.W, tk.E))
 
-results_scrollbar = ttk.Scrollbar(results_frame, orient="vertical")
-results_text = tk.Text(results_frame, wrap=tk.WORD, height=15, width=80, yscrollcommand=results_scrollbar.set)
+results_scrollbar = ttk.Scrollbar(results_content, orient="vertical")
+results_text = tk.Text(results_content, wrap=tk.WORD, height=15, yscrollcommand=results_scrollbar.set, relief="solid", borderwidth=2)
 results_scrollbar.config(command=results_text.yview)
 
 results_scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
@@ -279,8 +375,28 @@ results_text.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
 results_text.config(state=tk.DISABLED)
 
+# Bind click events to the results text widget
+results_text.bind("<Button-1>", copy_to_clipboard)
+results_text.bind("<Motion>", on_hover)  # When mouse moves over the widget
+
+
+# Row 1
 # Add a progress label to show file count (moved to row 8)
-progress_label = ttk.Label(frame, text="Files Scanned: 0/0", font=("Arial", 10))
-progress_label.grid(row=8, column=0, pady=5)
+progress_label = ttk.Label(results_frame, text="Files Scanned: 0/0", font=("Arial", 10))
+progress_label.grid(row=1, column=0, pady=5, sticky=tk.W)
+
+# Progress Bar
+progress_bar = ttk.Progressbar(results_frame, orient="horizontal", length=400, mode="determinate")
+progress_bar.grid(row=1, column=1, pady=10, columnspan=1)
+
+# Total file count loaded
+file_count_label = ttk.Label(results_frame, text=f"Total JSON Files: {total_files}", font=("Arial", 10))
+file_count_label.grid(row=1, column=2, pady=5, sticky=tk.E)
+
+# Row 2
+# Results Count Label
+results_label = ttk.Label(results_frame, text="", font=("Arial", 10, "bold"), foreground="blue")
+results_label.grid(row=2, column=1, pady=5)
+
 
 root.mainloop()
