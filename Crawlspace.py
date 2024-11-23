@@ -9,9 +9,271 @@ import re
 import os
 import sys
 import shutil
+from datetime import datetime
+import hashlib
+
+
+def hsl_to_rgb(h, s, l):
+    """Convert HSL values to RGB hexadecimal color."""
+    s /= 100
+    l /= 100
+    c = (1 - abs(2 * l - 1)) * s
+    x = c * (1 - abs((h / 60) % 2 - 1))
+    m = l - c / 2
+
+    r, g, b = 0, 0, 0
+    if 0 <= h < 60:
+        r, g, b = c, x, 0
+    elif 60 <= h < 120:
+        r, g, b = x, c, 0
+    elif 120 <= h < 180:
+        r, g, b = 0, c, x
+    elif 180 <= h < 240:
+        r, g, b = 0, x, c
+    elif 240 <= h < 300:
+        r, g, b = x, 0, c
+    elif 300 <= h < 360:
+        r, g, b = c, 0, x
+
+    r, g, b = int((r + m) * 255), int((g + m) * 255), int((b + m) * 255)
+    return f"#{r:02x}{g:02x}{b:02x}"
+
+
+def display_slack_chat(file_path):
+    """Display Slack chat messages in a tkinter window."""
+    
+    def on_mousewheel(event):
+        if chat_canvas.winfo_exists():  # Check if the canvas exists before scrolling
+            chat_canvas.yview_scroll(-1 * (event.delta // 120), "units")
+
+    def update_scroll_region(event=None):
+        chat_canvas.configure(scrollregion=chat_canvas.bbox("all"))
+
+    def format_timestamp(ts):
+        try:
+            ts_float = float(ts)
+            return datetime.fromtimestamp(ts_float).strftime('%Y-%m-%d %H:%M:%S')
+        except ValueError:
+            return "Unknown Time"
+
+    def extract_message_text(message):
+        text = ""
+        blocks = message.get("blocks", [])
+        try:
+            for block in blocks:
+                if block.get("type") == "rich_text":
+                    for element in block.get("elements", []):
+                        if element.get("type") == "rich_text_section":
+                            text += ''.join(
+                                el.get("text", "") if el.get("type") == "text" else el.get("url", "")
+                                for el in element.get("elements", []))
+        except Exception:
+            text = "[Error Extracting Text]"
+        return text if text else message.get("text", "[No Text]")
+
+    def create_message_bubble(user_name, text, timestamp, color, deleted=False):
+        bubble_frame = tk.Frame(chat_container, bg="white", padx=10, pady=5)
+        bubble_frame.pack(fill=tk.X, pady=5)
+
+        user_label = tk.Label(bubble_frame, text=user_name, bg=color, font=("Arial", 10, "bold"), anchor="w")
+        user_label.pack(fill=tk.X)
+
+        message_label = tk.Label(bubble_frame, text=text, bg=color, fg="black", wraplength=600, anchor="w", justify="left")
+        message_label.pack(fill=tk.X)
+
+        timestamp_label = tk.Label(bubble_frame, text=timestamp, bg="white", fg="gray", font=("Arial", 8), anchor="e")
+        timestamp_label.pack(fill=tk.X)
+
+    def get_user_color(user_id):
+        """Ensure unique color is assigned to each user based on user_id."""
+        if user_id not in user_colors:
+            # Generate a numeric value from the user_id using hashing
+            hashed_value = int(hashlib.md5(user_id.encode('utf-8')).hexdigest(), 16)
+            
+            # Generate a unique hue based on the hashed value
+            # Using a prime number (137) ensures wide color separation
+            hue = (hashed_value * 137) % 360  # Get hue by cycling through the color wheel
+            
+            # Adjust saturation and lightness for better readability
+            saturation = 40  # Moderate saturation to avoid overly vibrant colors
+            lightness = 60   # Increase lightness for better contrast and readability
+    
+            # Convert HSL to RGB (returns hex string)
+            user_colors[user_id] = hsl_to_rgb(hue, saturation, lightness)
+        
+        return user_colors[user_id]
+
+    def display_chat(data):
+        for widget in chat_container.winfo_children():
+            widget.destroy()
+
+        for message in data:
+            if message.get('subtype') == "message_deleted":
+                display_deleted_message(message)
+            else:
+                display_regular_message(message)
+
+    def load_users(folder_path):
+        """Load the user data from the users.json file in the selected folder."""
+        try:
+            # Construct the full path to the users.json file
+            users_file_path = os.path.join(folder_path, "users.json")
+            
+            with open(users_file_path, "r") as f:
+                data = json.load(f)
+                
+                # Ensure the data is a list
+                if isinstance(data, list):
+                    return data
+                else:
+                    raise ValueError("The users.json file must be an array of user objects.")
+        
+        except (FileNotFoundError, json.JSONDecodeError, ValueError) as e:
+            print(f"Error loading users: {e}")  # Log the error for debugging
+            return []
+
+    
+    def get_real_name_from_users(user_id):
+        """Get the real name of a user from the users.json file."""
+        users = load_users(folder_path)  # Load users from the given folder
+        if not users:
+            return "Unknown User"
+        
+        # Search for the user in the list by matching the 'id'
+        user = next((u for u in users if u.get('id') == user_id), None)
+        
+        if user:
+            return user.get("profile", {}).get("real_name", "Unknown User")
+        else:
+            return "Unknown User"
+
+    
+    def display_regular_message(message):
+        # Check if the message contains files (file upload handling)
+        if "files" in message and message["files"]:
+            # Get the user ID from the message
+            user_id = message.get("user", "unknown_user")
+            # Use the user ID to fetch the real name from the users.json file
+            display_name = get_real_name_from_users(user_id)
+            text = f"posted a file or image."
+        elif message.get("subtype") == "message_changed":
+            # Handle edited messages
+            user_profile = message.get("original", {}).get("user_profile", {})
+            display_name = user_profile.get("real_name") or "Unknown User"  # Fallback to "Unknown User"
+            display_name += " (Edited Message)"  # Append (Edited Message) to the display name
+            user_id = message.get("original", {}).get("user", "unknown_user")
+            # Get the text from the edited message
+            text = extract_message_text(message.get("original", {}))
+        elif message.get("subtype") in ["channel_name", "channel_topic", "channel_purpose"]:
+            # Handle system messages for channel updates
+            user_id = "system"  # Use a placeholder ID for system messages
+            display_name = f"System ({message.get('subtype')})"  # Display System with subtype
+            text = extract_message_text(message)  # Extract text for channel updates
+        else:
+            # Regular message handling (not a file upload or edited message)
+            user_id = message.get("user", "unknown_user")
+            user_profile = message.get("user_profile", {})
+            display_name = user_profile.get("real_name") or "Unknown User"  # Fallback to "Unknown User"
+            # Get the text from the message
+            text = extract_message_text(message)
+        
+        # Check for attachments and mark the message if there are any, without displaying them again
+        if "attachments" in message and message["attachments"]:
+            text += "\nThis message has attachments."
+        
+        # Get the color associated with this user (or bot)
+        user_color = get_user_color(user_id)
+        
+        # Create the message bubble with the correct user or bot details
+        create_message_bubble(display_name, text, format_timestamp(message.get("ts", "0")), user_color)
+
+    
+    def get_user_name(user_id):
+        # Retrieve user profile information based on user_id
+        # Assume a function get_user_profile_by_id that fetches the user data by user_id
+        user_profile = get_user_profile_by_id(user_id)
+        return user_profile.get("real_name", "Unknown User")
+    
+    def get_user_profile_by_id(user_id):
+        # This function simulates fetching the user profile by user_id.
+        # Replace this with your actual method to get user profiles.
+        user_profiles = {
+            "U079R4A554J": {"real_name": "Matthew Baker"},
+            "U0664M6ATQE": {"real_name": "Chris Tang"},
+            # Add more user profiles here as needed
+        }
+        return user_profiles.get(user_id, {"real_name": "Unknown User"})
+
+
+    
+    def display_deleted_message(message):
+        original_message = message.get("original", {})
+        user_id = original_message.get("user", "unknown_user")
+        user_profile = original_message.get("user_profile", {})
+        user_name = user_profile.get("display_name") or user_profile.get("real_name") or "Unknown User"
+        timestamp = format_timestamp(message.get("ts", "0"))
+        text = extract_message_text(original_message)
+
+        user_color = get_user_color(user_id)
+        create_message_bubble(user_name + " (Deleted)", text, timestamp, user_color, deleted=True)
+
+    user_colors = {}  # Dictionary to hold the user colors
+
+    if not file_path or not os.path.exists(file_path):
+        messagebox.showerror("Error", "Invalid file path or file does not exist.")
+        return
+
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+    except json.JSONDecodeError as e:
+        messagebox.showerror("Error", "Invalid JSON file format.")
+        return
+    except Exception as e:
+        messagebox.showerror("Error", f"Failed to load JSON file: {e}")
+        return
+
+    # Create a new window for Slack Chat Viewer
+    slack_chat_window = tk.Toplevel()  # Create a new window (Toplevel)
+    slack_chat_window.title("Crawlspace Chat Viewer")
+    slack_chat_window.geometry("800x600")
+    slack_chat_window.iconbitmap("crawl.ico")
+
+    # Layout
+    file_path_label = tk.Label(slack_chat_window, text="File Path:")
+    file_path_label.pack(pady=5)
+
+    file_path_entry = tk.Entry(slack_chat_window, width=80)
+    file_path_entry.pack(pady=5)
+    file_path_entry.insert(0, file_path)
+
+    chat_frame = tk.Frame(slack_chat_window)
+    chat_frame.pack(fill=tk.BOTH, expand=True)
+
+    chat_canvas = tk.Canvas(chat_frame, bg="white")
+    chat_canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+
+    scrollbar = ttk.Scrollbar(chat_frame, orient=tk.VERTICAL, command=chat_canvas.yview)
+    scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+
+    chat_canvas.configure(yscrollcommand=scrollbar.set)
+
+    chat_container = tk.Frame(chat_canvas, bg="white")
+    chat_canvas.create_window((0, 0), window=chat_container, anchor="nw")
+
+    chat_canvas.bind_all("<MouseWheel>", on_mousewheel)
+    chat_container.bind("<Configure>", update_scroll_region)
+
+    # Call display_chat automatically after loading the file
+    display_chat(data)
+
+
+
+
 
 def load_folder():
     """Load a folder containing JSON files."""
+    global folder_path
     folder_path = filedialog.askdirectory()
     if folder_path:
         global folder_data, total_files
@@ -219,8 +481,8 @@ def search_words():
     # Run the search in a separate thread
     threading.Thread(target=perform_search, daemon=True).start()
 
-def copy_to_clipboard(event):
-    """Copy the clicked file path to the clipboard."""
+def on_file_path_click(event):
+    """Trigger display_slack_chat when file path is clicked."""
     try:
         widget = event.widget
         index = widget.index(f"@{event.x},{event.y}")
@@ -228,12 +490,12 @@ def copy_to_clipboard(event):
         match = re.search(r"File Path: (.+)", line)
         if match:
             file_path = match.group(1)
-            root.clipboard_clear()
-            root.clipboard_append(file_path)
-            root.update()
-            messagebox.showinfo("Copied", f"File path copied to clipboard:\n{file_path}")
+            display_slack_chat(file_path)  # Call display_slack_chat with the file path
+        else:
+            messagebox.showerror("Error", "No valid file path clicked.")
     except Exception as e:
-        messagebox.showerror("Error", f"Failed to copy file path: {e}")
+        messagebox.showerror("Error", f"Failed to trigger chat display: {e}")
+
 
 def on_hover(event):
     """Change the mouse cursor to a hand when hovering over file paths."""
@@ -283,7 +545,7 @@ root = tk.Tk()
 icon_path = resource_path("crawl.ico")
 icon_path = ensure_icon_exists(icon_path)
 root.iconbitmap(icon_path)  # Set the icon
-root.title("CrawlSpace - Slack Audit Engine V1.0.1")
+root.title("CrawlSpace - Slack Audit Engine V1.1.0")
 root.geometry("900x700")
 root.iconbitmap("crawl.ico")
 
@@ -376,7 +638,7 @@ results_text.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 results_text.config(state=tk.DISABLED)
 
 # Bind click events to the results text widget
-results_text.bind("<Button-1>", copy_to_clipboard)
+results_text.bind("<Button-1>", on_file_path_click)
 results_text.bind("<Motion>", on_hover)  # When mouse moves over the widget
 
 
