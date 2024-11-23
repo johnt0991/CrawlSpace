@@ -5,7 +5,7 @@ a = Analysis(
     ['Crawlspace.py'],
     pathex=[],
     binaries=[],
-    datas=[('viewer.html', '.'), ('crawl.ico', '.')],
+    datas=[('crawl.ico', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
